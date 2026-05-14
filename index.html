@@ -5,45 +5,90 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Home</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        /* New driving scene layers */
+        #bg {
+            background: linear-gradient(to bottom, #0a001f 0%, #1a0033 60%, #111 100%);
+            animation: bgShift 80s linear infinite;
+        }
+        
+        .road-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 45%;
+            background: 
+                linear-gradient(transparent, #1a1a2e 30%),
+                repeating-linear-gradient(90deg, 
+                    #ff00ff 0px, #ff00ff 30px, 
+                    transparent 30px, transparent 70px);
+            animation: roadScroll 6s linear infinite;
+            opacity: 0.75;
+            box-shadow: 0 -20px 60px rgba(0, 255, 255, 0.4);
+            z-index: 1;
+        }
 
-				<!-- Header -->
-					<header id="header">
-						<h1>Home Page</h1>
-						<p>Twitter &nbsp;&bull;&nbsp; Facebork &nbsp;&bull;&nbsp; Ball &nbsp;&bull;&nbsp; Github &nbsp;&bull;&nbsp; Mail</p>
-						<nav>
-							<ul>
-								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebork</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-								<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-							</ul>
-						</nav>
-					</header>
+        .car {
+            position: absolute;
+            bottom: 22%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            z-index: 5;
+            filter: drop-shadow(0 10px 20px #0ff);
+            animation: carBob 2s ease-in-out infinite alternate;
+        }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Moonman. Meme: <a href="http://html5up.net">HTML5 UP</a>.</span>
-					</footer>
+        @keyframes bgShift { from { background-position: 0 0; } to { background-position: -800px 0; } }
+        @keyframes roadScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes carBob { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-12px); } }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="overlay"></div>
+        
+        <!-- New road and car layers -->
+        <div class="road-layer"></div>
+        <img src="https://i.imgur.com/EXAMPLE-CAR-PNG.png" class="car" alt="Driving Car">   <!-- ← Change this URL -->
 
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+        <div id="main">
+            <!-- Header -->
+            <header id="header">
+                <h1>Home Page</h1>
+                <p>Twitter &nbsp;&bull;&nbsp; Facebork &nbsp;&bull;&nbsp; Ball &nbsp;&bull;&nbsp; Github &nbsp;&bull;&nbsp; Mail</p>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebork</span></a></li>
+                        <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+                        <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <span class="copyright">&copy; Moonman. Meme: <a href="http://html5up.net">HTML5 UP</a>.</span>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() { 
+            document.body.classList.remove('is-preload'); 
+        };
+        window.ontouchmove = function() { return false; };
+        window.onorientationchange = function() { document.body.scrollTop = 0; };
+    </script>
+</body>
 </html>
